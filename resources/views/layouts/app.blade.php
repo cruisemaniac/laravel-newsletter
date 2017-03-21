@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | Mailing Controller</title>
+    <title>@yield('title') | The Devops List</title>
 
     <!-- Styles -->
 
@@ -112,11 +112,12 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <i class="fa fa-envelope-o fa-1x"></i> Newsletter
+                        <i class="fa fa-envelope-o fa-1x"></i> The Devops List
                     </a>
                 </div>
-
+                
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                @if (Auth::check())
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li class="@if(request()->is('subscriptions*')) active @endif"><a href="{{ route('subscriptions.index') }}">Subscriptions</a></li>
@@ -125,7 +126,7 @@
                         <li class="@if(request()->is('templates*')) active @endif"><a href="{{ route('templates.index') }}">Templates</a></li>
                         <li class="@if(request()->is('settings*')) active @endif"><a href="{{ route('settings.application') }}">Settings</a></li>
                     </ul>
-
+                @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
