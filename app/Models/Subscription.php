@@ -52,6 +52,7 @@ class Subscription extends Model
 
         static::creating(function ($subscription) {
             $subscription->unsubscribe = str_random(25);
+            $subscription->confirm_token = str_random(25);
         });
     }
 

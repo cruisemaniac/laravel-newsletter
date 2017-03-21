@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'HomeController@index')->name('index');
+Route::post('/subscribe', 'UserSubscribeController@subscribe')->name('userSubscribe');
+Route::get('confirm/{email}/{confirmcode}', 'UserSubscribeController@confirmsubscription')->name('userConfirm');
 
 Auth::routes();
 

@@ -63,7 +63,9 @@ class CampaignController extends Controller
     {
         abort_if($campaign->send, 404);
 
-        $campaign->load('template', 'mailingLists.subscriptions');
+        $campaign->load(['template', 'mailingLists.subscriptions' => function($query) {
+            $query->whereNotNull('confirmed_at');
+        }]);
 
         $subscriptions = $campaign->getSubscriptions();
 
