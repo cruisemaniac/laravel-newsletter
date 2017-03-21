@@ -15,7 +15,7 @@ class AddUniqueIndexToEmailInSubscriptions extends Migration
     {
         //
         Schema::table('subscriptions', function(Blueprint $table) {
-            $table->index('email')->unique();
+            $table->unique(['email', 'mailing_list_id']);
         });
     }
 
