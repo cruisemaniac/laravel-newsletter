@@ -35,10 +35,11 @@ class CampaignMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject($this->campaign->subject)->view('emails.campaign')->with([
+        return $this->subject( env('SITE_NAME').": ". $this->campaign->subject)->view('emails.campaign')->with([
             'content' => $this->str_replace_dynamic([
                 '%subject%' => $this->campaign->subject,
                 '%email%' => $this->subscription->email,
+                '%content%' => $this->campaign->content,
                 '%name%' => $this->subscription->name,
                 '%country%' => countries($this->subscription->country),
                 '%unsubscribe_link%' => route('subscriptions.preunsubscribe', [$this->subscription->email, $this->subscription->unsubscribe])

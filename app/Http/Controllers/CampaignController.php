@@ -24,7 +24,10 @@ class CampaignController extends Controller
 
     public function show(Campaign $campaign)
     {
-        $campaign->load('template', 'mailingLists.subscriptions');
+        $campaign->load(['template', 'mailingLists.subscriptions' => function($query) {
+            $query->whereNotNull('confirmed_at');
+        }]);
+
 
         $subscriptions = $campaign->getSubscriptions();
 
@@ -106,7 +109,9 @@ class CampaignController extends Controller
 
     public function send(Campaign $campaign)
     {
-        $campaign->load('template', 'mailingLists.subscriptions');
+        $campaign->load(['template', 'mailingLists.subscriptions' => function($query) {
+            $query->whereNotNull('confirmed_at');
+        }]);
         $subscriptions = $campaign->getSubscriptions();
 
         $this->dispatch(new SendCampaign($subscriptions, $campaign, $campaign->template));

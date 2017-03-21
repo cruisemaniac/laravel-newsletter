@@ -21,7 +21,8 @@ class Campaign extends Model
         'name',
         'subject',
         'send',
-        'template_id'
+        'template_id',
+        'content'
     ];
 
     protected $casts = [

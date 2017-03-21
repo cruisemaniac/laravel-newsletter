@@ -35,7 +35,7 @@
                     <tr>
                         <th>Recipients</th>
                         <td>
-                            {{ $subscriptions->count() }}
+                            <strong>{{ $subscriptions->count() }}</strong> <em>(Only confirmed subscribers shown here)</em>
                         </td>
                     </tr>
                     <tr>
