@@ -15,6 +15,7 @@
 Route::get('/', 'HomeController@index')->name('index');
 Route::post('/subscribe', 'UserSubscribeController@subscribe')->name('userSubscribe');
 Route::get('confirm/{email}/{confirmcode}', 'UserSubscribeController@confirmsubscription')->name('userConfirm');
+Route::get('/internal/subcount', 'UserSubscribeController@subcount')->name('subcount');
 
 Auth::routes();
 

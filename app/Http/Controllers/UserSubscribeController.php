@@ -16,7 +16,7 @@ class UserSubscribeController extends Controller
     {
         $user = \App\Models\User::find(1);
         $sub = [];
-        
+
         $sub['email'] = $request->input('email');
         $sub['mailing_list_id'] = 1;
         $subscription_id = $user->subscription()->create($sub)->id;
@@ -38,5 +38,24 @@ class UserSubscribeController extends Controller
 
 
         return view('thankyou');
+    }
+
+    public function subcount(Request $request)
+    {
+        if ($request->hasHeader(env('JSON_KEY_NAME')))
+        {
+            if($request->header(env('JSON_KEY_NAME')) == env('JSON_KEY_VALUE'))
+            {
+                $subscriptions = \App\Models\Subscription::where('mailing_list_id', 1)->count();
+                $confirm_pending = \App\Models\Subscription::where('mailing_list_id', 1)->whereNull('confirmed_at')->count();
+
+                return response()->json([
+                        'subscribed' => $subscriptions,
+                        'pending' => $confirm_pending
+                    ], 200);
+            }
+        }
+        \Log::info('someone hit the damn api!');
+        return response()->json(['msg' => 'No cookie for you!'], 404);
     }
 }
