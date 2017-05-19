@@ -127,6 +127,9 @@
                         <li class="@if(request()->is('settings*')) active @endif"><a href="{{ route('settings.application') }}">Settings</a></li>
                     </ul>
                 @endif
+                    <ul class="nav navbar-nav">
+                        <li class="@if(request()->is('workshop*')) active @endif"><a href="{{ route('workshops') }}">Workshops & Training</a></li>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
