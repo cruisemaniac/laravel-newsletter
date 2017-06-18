@@ -14,6 +14,10 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 Route::post('/subscribe', 'UserSubscribeController@subscribe')->name('userSubscribe');
+
+// feedback stuff
+Route::get('feedback', 'FeedbackController@index')->name('getFeedback');
+// Route::post('feedback', ['as' => 'feedback.store', 'uses' => 'FeedbackController@feedbackSave']);
 Route::get('confirm/{email}/{confirmcode}', 'UserSubscribeController@confirmsubscription')->name('userConfirm');
 Route::get('/internal/subcount', 'UserSubscribeController@subcount')->name('subcount');
 Route::get('/workshops', 'WorkshopController@index')->name('workshops');
